@@ -7,7 +7,7 @@ module RecipeBox
     end
 
     desc "recipe_box NAME", "create a recipe called NAME"
-    def new_recipe(name)
+    def insert(name)
       puts source_paths.inspect
       empty_directory(name)
       template("../../templates/recipe.tt", "#{name}/#{name}.markdown")

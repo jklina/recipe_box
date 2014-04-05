@@ -3,7 +3,7 @@ require_relative 'helper'
 describe "creating a recipe" do
   before do
     @recipe_name = "flan"
-    @out = capture_io{ RecipeBox::CLI.start %w{ new_recipe flan } }.join ''
+    @out = capture_io{ RecipeBox::CLI.start %w{ insert flan } }.join ''
   end
 
   it "creates a proper directory structure" do
