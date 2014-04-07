@@ -22,11 +22,20 @@ end
 describe "removing a recipe" do
   before do
     @recipe_name = "flan"
+    Thor::Shell::Basic.any_instance.expects(:yes?).with("Warning: this will remove the directory #{@recipe_name} and all its contents. Proceed?").returns(true)
   end
 
+  #capture_subprocess_io and maybe move to unit test
   it "gives a warning that its about to delete the receipe dir and contents" do
-    Thor::Shell::Basic.any_instance.expects(:yes?).with("Warning: this will remove the directory #{@recipe_name} and all its contents. Proceed?")
-    RecipeBox::CLI.start %w{ remove flan }
+    capture_io { RecipeBox::CLI.start %w{ remove flan } }
+  end
+
+  it "removes the directory" do
+    FileUtils.mkdir(@recipe_name)
+    FileUtils.touch("#{@recipe_name}/#{@recipe_name}.markdown")
+    assert File.directory?(@recipe_name)
+    capture_io { RecipeBox::CLI.start %w{ remove flan } }
+    refute File.directory?(@recipe_name)
   end
 
   after do
