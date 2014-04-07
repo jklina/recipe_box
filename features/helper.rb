@@ -1,3 +1,5 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'minitest/mock'
+require 'mocha/mini_test'
 require_relative '../bin/recipe_box'

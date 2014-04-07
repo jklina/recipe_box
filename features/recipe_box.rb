@@ -18,3 +18,18 @@ describe "creating a recipe" do
     FileUtils.rm_rf(@recipe_name)
   end
 end
+
+describe "removing a recipe" do
+  before do
+    @recipe_name = "flan"
+  end
+
+  it "gives a warning that its about to delete the receipe dir and contents" do
+    Thor::Shell::Basic.any_instance.expects(:yes?).with("Warning: this will remove the directory #{@recipe_name} and all its contents. Proceed?")
+    RecipeBox::CLI.start %w{ remove flan }
+  end
+
+  after do
+    FileUtils.rm_rf(@recipe_name)
+  end
+end
