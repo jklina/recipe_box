@@ -1,5 +1,13 @@
 require_relative 'helper'
 
+describe "creating a recipe box" do
+  it "creates a proper directory structure" do
+    name = "cool_recipes"
+    out = capture_io{ RecipeBox::CLI.start %w{ new cool_recipes } }.join ''
+    assert File.directory?(name)
+  end
+end
+
 describe "creating a recipe" do
   before do
     @recipe_name = "flan"
