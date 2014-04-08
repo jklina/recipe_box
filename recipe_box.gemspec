@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["joshua.klina@gmail.com"]
   spec.summary       = %q{A command line app that helps manage a git repository of (cooking) recipes.}
   spec.description      = "A command line app that generates templates for make recipes."
-  # spec.homepage      = ""
+  spec.homepage      = "https://github.com/jklina/recipe_box"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
